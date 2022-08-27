@@ -5,6 +5,9 @@ body, html {
     scroll-snap-type:both mandatory;
 
   }
+  *{
+    box-sizing: border-box !important;
+  }
   .border{
     border:1px solid yellow;
   }
@@ -104,4 +107,29 @@ position: relative;
 }
 Link.active{
   background-color: rgb(32, 32, 32);
+}
+.search{
+/* border-bottom: 1px solid white; */
+width: 6em  ;
+height: auto !important;
+display: flex;
+margin-right: 3em !important;
+border-radius: 0px !important;
+}
+.search:hover{
+  background:none !important;
+}
+/* css for navbar div */
+.navbtnbox {
+  align-items: flex-start !important;
+}
+.navbar{
+  position: fixed;
+  top:0;
+  left:0;
+  z-index: 99;
+  align-items: flex-start !important;
+}
+.change-my-color {
+  fill: white;
 }
