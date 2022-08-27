@@ -1,0 +1,31 @@
+.search{
+    /* border-bottom: 1px solid white; */
+    width: 6em  ;
+    height: auto !important;
+    display: flex;
+    margin-right: 3em !important;
+    border-radius: 0px !important;
+    }
+    .search:hover{
+      background:none !important;
+    }
+    /* css for navbar div */
+    .navbtnbox {
+      align-items: flex-start !important;
+    }
+    .navbar{
+      position: fixed;
+      z-index: 99;
+      align-items: flex-start !important;
+    }
+    .navbarAll{
+        position: fixed;
+        top:0;
+        left:0;
+        z-index: 99;
+        align-items: flex-start !important;
+        background-color: white;
+    }
+    .change-my-color {
+      fill: white;
+    }
