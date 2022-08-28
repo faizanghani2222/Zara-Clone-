@@ -7,6 +7,7 @@ body, html {
   }
   *{
     box-sizing: border-box !important;
+    font-family:"Times New Roman" !important;
   }
   .border{
     border:1px solid yellow;
@@ -90,7 +91,8 @@ position: relative;
   background: rgb(32, 32, 32);
 }
 .container-sliderFooter {
-  position: absolute;
+  position: fixed;
+  z-index: 99;
   bottom: 30px;
   right:34%;
   width: 40%;
@@ -113,7 +115,6 @@ Link.active{
 width: 6em  ;
 height: auto !important;
 display: flex;
-margin-right: 3em !important;
 border-radius: 0px !important;
 }
 .search:hover{
@@ -132,4 +133,16 @@ border-radius: 0px !important;
 }
 .change-my-color {
   fill: white;
+}
+/* .filter{
+  margin-left: 100px;
+  position:fixed !important;
+  top:10vh;
+  right: 1.5em;
+  z-index: 100;
+} */
+
+.cartCounter{
+  position: fixed;
+  transform: translate(-50%, -30%);
 }

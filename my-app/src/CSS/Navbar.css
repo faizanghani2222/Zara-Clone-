@@ -24,8 +24,16 @@
         left:0;
         z-index: 99;
         align-items: flex-start !important;
-        background-color: white;
+        /* background-color: white; */
     }
     .change-my-color {
       fill: white;
     }
+    /* .filter{
+      margin-left: ;
+      position:fixed;
+      top:0;
+      right: 30px;
+      bottom: 0;
+      z-index: 9999;
+    } */
