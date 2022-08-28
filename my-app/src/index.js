@@ -5,6 +5,7 @@ import App from './App';
 import { ChakraProvider } from '@chakra-ui/react'
 import {BrowserRouter} from "react-router-dom"
 import reportWebVitals from './reportWebVitals';
+import { theme } from './Theme/theme.config';
 import { AuthContextProvider } from './Context/AuthContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -12,7 +13,7 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
     <AuthContextProvider>
-    <ChakraProvider >
+    <ChakraProvider theme={theme}>
     <App />
     </ChakraProvider>
     </AuthContextProvider>
