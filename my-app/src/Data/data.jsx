@@ -17,75 +17,101 @@ export const dataSlider = [
     {
       id: 1,
       title: ZaraMan,
-      subTitle: "Lorem"
+      target:"/men"
     },
     {
       id: 2,
       title: zaraWoman,
-      subTitle: "Lorem"
+      target:"/women"
     },{
       id: 3,
       title: ZaraKids,
-      subTitle: "Lorem"
+      target:"/kids"
     }
   ]
   export const dataSliderFooter = [
     {
       id: 'sf1',
-      title: "New",
+      title: "Woman",
       class:"sliderFooter active",
-      subTitle: "box1"
+      subTitle: "/women"
     },
     {
       id: 'sf2',
-      title: "Basics",
-      subTitle: "box2"
+      title: "Man",
+      subTitle: "/men"
     },{
       id: 'sf3',
-      title: "Jeans",
-      subTitle: "box3"
+      title: "Kids",
+      subTitle: "/kids"
+    }
+  ]
+  export const datadotContainer = [
+    {
+      id: 'd1',
+      title: "dots1",
+      class:"sliderFooter active",
+      subTitle: "#box1"
+    },
+    {
+      id: 'd2',
+      title: "dots2",
+      subTitle: "#box2"
     },{
-      id: 'sf4',
-      title: "Shoes",
-      subTitle: "box4"
+      id: 'd3',
+      title: "dots3",
+      subTitle: "#box3"
+    },{
+      id:"d4",
+      title:"dots4",
+      subTitle: "#box4"
     }
   ]
   export const imageSlider=[
    [
     {
         id:"is1",
-        title:ZaraManImg1
+        title:ZaraManImg1,
+        target:"/men"
     },
     {
         id:"is2",
-        title:ZaraWomanImg1
+        title:ZaraWomanImg1,
+        target:"/woman"
     },{
         id:"is3",
-        title:ZaraKidsImg1
+        title:ZaraKidsImg1,
+        target:"/kids"
     }
    ], [
     {
         id:"is4",
-        title:ZaraManImg2
+        title:ZaraManImg2,
+        target:"/men"
     },
     {
         id:"is5",
-        title:ZaraWomanImg2
+        title:ZaraWomanImg2,
+        target:"/woman"
     },{
         id:"is6",
-        title:ZaraKidsImg2
+        title:ZaraKidsImg2,
+        target:"/kids"
     }
    ], [
     {
         id:"is7",
-        title:ZaraManImg3
+        title:ZaraManImg3,
+        target:"/men"
     },
     {
         id:"is8",
-        title:ZaraWomanImg3
+        title:ZaraWomanImg3,
+        target:"/woman"
     },{
         id:"is9",
-        title:ZaraKidsImg3
+        title:ZaraKidsImg3,
+        target:"/kids"
     }
    ]
   ]
