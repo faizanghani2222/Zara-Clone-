@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react"
-import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box, Button, ButtonGroup, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay,Icon,Image,Radio,RadioGroup,SimpleGrid,Skeleton,StackDivider, useDisclosure, VStack } from '@chakra-ui/react'
+import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box, Button, ButtonGroup, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay,Icon,Image,Input,Radio,RadioGroup,SimpleGrid,Skeleton,StackDivider, Tab, TabList, TabPanel, TabPanels, Tabs, useDisclosure, VStack } from '@chakra-ui/react'
 import { Flex, Spacer } from '@chakra-ui/react'
 import  "../CSS/Navbar.css"
 import { Link as RouterLink } from "react-router-dom";
@@ -16,6 +16,7 @@ export const Search=()=>{
     const [isShown, setIsShown] = useState(false);
     const [data,setData]=useState([])
     const [pdata,setpData]=useState([])
+    const [srch,setsrch]=useState("")
     const [isloading,setIsLoading]=useState(false)
     const {state,dispatch}=useContext(AuthContext)
     const getData=(url)=>{
@@ -23,8 +24,18 @@ export const Search=()=>{
             return res.json()
         })
     }
+    const handleFetch=(val)=>{
+      getData(`https://faizan-mock-api.herokuapp.com/${val}`).then((res)=>{
+        setIsLoading(true)
+        setData(res)
+        setpData(res)
+        setsrch("");
+    }).catch((err)=>{
+      console.log(err)
+    })
+    }
     useEffect(()=>{
-        getData("https://faizan-mock-api.herokuapp.com/Men").then((res)=>{
+        getData("https://faizan-mock-api.herokuapp.com/woman").then((res)=>{
             setIsLoading(true)
             setData(res)
             setpData(res)
@@ -111,9 +122,21 @@ else if(value==="htl"){
   }else{
     alert("Item Already Added")
   }
-  console.log(state.cartData)
 }
-    return <>
+const handleSearch=(e)=>{
+  e.preventDefault()
+  console.log(srch)
+  let v=srch
+  if(v==="t-shirt"){
+    v="tshirt"
+  }
+let temp=pdata.filter((el)=>{
+
+  return el.category===v
+})
+setData(temp)
+}
+     return <>
    
     <Flex className='navbarAll' w='100%' pt='10px' gap={[0,2,2]} flexDir={["column","row","row"]}>
     <Flex gap='2'>
@@ -167,7 +190,6 @@ else if(value==="htl"){
     </Flex>
   <Spacer />
   <ButtonGroup className='navbtnbox' gap='2' ml={["2em",0,0]} pt='0.7rem' mr={[0,null,'1rem']}>
-    <RouterLink to="/search"><Button className='navbarbtn search' fontWeight="500" borderBottom='1px'  borderColor='Black' color='Black' outline='none' p='0px' justifyContent="flex-start"  variant='ghost'>Search</Button></RouterLink>
     <RouterLink to={state.isAuth?"/account":"/login"}><Button className='navbarbtn loginbtn'  fontWeight="400" color="black" variant='link'>{state.isAuth?state.user:"Login"}</Button></RouterLink>
     <RouterLink to="/help"><Button className='navbarbtn' fontWeight="400" color="#000000" variant='link'>Help</Button></RouterLink>
     <RouterLink to="/cart">
@@ -181,7 +203,6 @@ else if(value==="htl"){
 </Flex>
 
 {/* filter drawer begins */}
-
 <Button position="fixed" zIndex="100" top={["22vh", null, "10vh"]} right="1.5em" className="filter" ref={btnfRef} colorScheme='black' fontWeight="400" borderRadius="none" color="#000000"  h="1.7em" variant='outline' onClick={onOpenf}>
         Filter
       </Button>
@@ -258,10 +279,24 @@ else if(value==="htl"){
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
+<form onSubmit={(e)=>handleSearch(e)}>
+  <Input color="black" w="80%" ml="10%" borderColor="black" variant="flushed" borderBottom="2px solid black" mb="3em" mt="25vh" type="text" value={srch} onChange={(e)=>{setsrch(e.target.value)}} placeholder="Search for jeans,shirt,shoe and t-shirt" />
+</form>
+ <Tabs >
+<TabList display="flex" justifyContent="center" textAlign="center" alignItems="center">
+  <Tab onClick={()=>handleFetch("woman")}>Woman</Tab>
+  <Tab onClick={()=>handleFetch("men")}>Men</Tab>
+  <Tab onClick={()=>handleFetch("kids")}>Kids</Tab>
+</TabList>
+
+<TabPanels>
+  <TabPanel >
+    
+
 
       
 
-<SimpleGrid p="1em" mt={["25vh",null,"20vh"]} columns={[2, null, 4]} spacing={["10px", null, "40px"]}>
+<SimpleGrid p="1em" mt="4vh" columns={[2, null, 4]} spacing={["10px", null, "40px"]}>
      {data && data.map((el)=>{
       return <Box key={el.id} position="relative" onMouseOver={() => setIsShown(true)}
       onMouseOut={() => setIsShown(false)}
@@ -276,5 +311,43 @@ else if(value==="htl"){
         </Box>
      })} 
      </SimpleGrid>
-    </>
+    
+  </TabPanel>
+  <TabPanel>
+  <SimpleGrid p="1em" mt={["25vh",null,"20vh"]} columns={[2, null, 4]} spacing={["10px", null, "40px"]}>
+     {data && data.map((el)=>{
+      return <Box key={el.id} position="relative" onMouseOver={() => setIsShown(true)}
+      onMouseOut={() => setIsShown(false)}
+       maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
+               <Skeleton isLoaded={isloading}>
+             <RouterLink to={`/productsDetails/${el.id}`}><Image  w="100%"  src={el.image} alt={el.id} /></RouterLink>
+             {isShown && (
+              <Button variant="ghost" onClick={()=>addtoCart(el)} position="absolute" transform="translate(0%, -100%)"><Icon as={AddIcon} /></Button>
+      )}
+             <Box p="0.2em 0.7em" fontSize={{ base: '12px',lg: '14px' }} color="grey" display={{ md: 'flex',lg:'flex' }} justifyContent="space-between"><Box>{el.title}</Box> <Box>&#8377; {el.price}</Box></Box>
+             </Skeleton>
+        </Box>
+     })} 
+     </SimpleGrid>
+  </TabPanel>
+  <TabPanel>
+  <SimpleGrid p="1em" mt={["25vh",null,"20vh"]} columns={[2, null, 4]} spacing={["10px", null, "40px"]}>
+     {data && data.map((el)=>{
+      return <Box key={el.id} position="relative" onMouseOver={() => setIsShown(true)}
+      onMouseOut={() => setIsShown(false)}
+       maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
+               <Skeleton isLoaded={isloading}>
+             <RouterLink to={`/productsDetails/${el.id}`}><Image  w="100%"  src={el.image} alt={el.id} /></RouterLink>
+             {isShown && (
+              <Button variant="ghost" onClick={()=>addtoCart(el)} position="absolute" transform="translate(0%, -100%)"><Icon as={AddIcon} /></Button>
+      )}
+             <Box p="0.2em 0.7em" fontSize={{ base: '12px',lg: '14px' }} color="grey" display={{ md: 'flex',lg:'flex' }} justifyContent="space-between"><Box>{el.title}</Box> <Box>&#8377; {el.price}</Box></Box>
+             </Skeleton>
+        </Box>
+     })} 
+     </SimpleGrid>
+  </TabPanel>
+</TabPanels>
+</Tabs>
+</>
 }

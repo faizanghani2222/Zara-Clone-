@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react"
 import { Box, Button, ButtonGroup, Drawer, DrawerBody, DrawerCloseButton, DrawerContent , DrawerHeader, DrawerOverlay, Grid, Icon,Image,StackDivider, Text, useDisclosure, VStack } from '@chakra-ui/react'
 import { Flex, Spacer } from '@chakra-ui/react'
 import  "../CSS/Navbar.css"
-import { Link as RouterLink  } from "react-router-dom";
+import { Link as RouterLink, useNavigate  } from "react-router-dom";
 import { HamburgerIcon } from '@chakra-ui/icons';
 import { AuthContext } from "../Context/AuthContext";
 
@@ -12,6 +12,7 @@ export const Cart=()=>{
     const btnRef = React.useRef();
     const {state,dispatch}=useContext(AuthContext)
     const [total,setTotal]=useState(0)
+    const Navigate=useNavigate()
 useEffect(()=>{
     let sum=0;
     state.cartData.forEach((el)=>{
@@ -20,7 +21,6 @@ useEffect(()=>{
     setTotal(sum)
 },[state.cartData])
 const handleQty=(el,order)=>{
-    console.log(el)
     if(order==="asc"){
       let action={
         type:"addQty",
@@ -29,6 +29,18 @@ const handleQty=(el,order)=>{
        
         dispatch(action)
     }
+}
+const handleDelete=(id)=>{
+  let action={
+    type:"delete",
+    payload:id
+  }
+  dispatch(action)
+}
+const proceed=()=>{
+  if(state.cartData.length!==0){
+    Navigate("/checkout")
+  }
 }
     return <>
    <Flex className='navbarAll' bg="white" w='100%' pt='10px' gap={[0,2,2]} flexDir={["column","row","row"]}>
@@ -94,7 +106,7 @@ const handleQty=(el,order)=>{
 <Text mt="25vh" ml="5em" fontSize="24px" fontWeight="600" fontFamily="Neue-Helvetica, Helvetica, Arial, sans-serif">Cart ({state.cartCount})</Text>
 <Text display={["none","none","block"]}bg="#e3dede"ml="8em" fontSize="14px"p="2" width="30%">Items in the basket are not reserved until completing the purchase.</Text>
 
-<Grid ml="6em" templateColumns={['100%','repeat(2, 1fr)','repeat(2, 1fr)','repeat(3, 1fr)']} mt="2em">
+<Grid ml="6em" mb="15em" templateColumns={['100%','repeat(2, 1fr)','repeat(2, 1fr)','repeat(3, 1fr)']} mt="2em">
     {state.cartData && state.cartData.map((el)=>{
         return <Box key={el.id} p="2">
         <Text fontSize="14px" fontWeight="500">{el.title}</Text>
@@ -111,7 +123,7 @@ const handleQty=(el,order)=>{
                 </Box>
                 <Spacer/>
                 <Text fontSize="12px" fontWeight="300">&#8377; {el.price}</Text>
-                <Button  fontSize="12px" fontWeight="300" p="0" justifyContent="flex-start" variant="ghost">DELETE</Button>
+                <Button onClick={()=>handleDelete(el.id)}  fontSize="12px" fontWeight="300" p="0" justifyContent="flex-start" variant="ghost">DELETE</Button>
             </Box>
         </Box>
     </Box>
@@ -123,7 +135,7 @@ const handleQty=(el,order)=>{
     <Text fontSize="10px" fontWeight="300">INCLUDING GST</Text>
     <Text fontSize="10px" fontWeight="300">* EXCL SHIPPING COST</Text>
 </Box>
-<Button size='md' w="20%" ml="2em" fontSize="16px" fontWeight="300" color='white' bg='black' borderRadius='none' >Continue</Button>
+<Button size='md' w="20%" ml="2em" fontSize="16px" fontWeight="300" color='white' bg='black' onClick={proceed}borderRadius='none' >Continue</Button>
 </Box>
     </>
 }

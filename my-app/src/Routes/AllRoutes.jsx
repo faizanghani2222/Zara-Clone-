@@ -1,6 +1,8 @@
 import React from "react"
 import { Route, Routes } from "react-router-dom"
+import { Account } from "./Account"
 import { Cart } from "./Cart"
+import { Checkout } from "./Checkout"
 import { Home } from "./Home"
 import { Kids } from "./Kids"
 import { Login } from "./Login"
@@ -21,5 +23,7 @@ return  <Routes>
     <Route path="/cart"  element={<Cart/>}/>
     <Route path="/register"  element={<Signup/>}/>
     <Route path="/search"  element={<Search/>}/>
+    <Route path="/checkout"  element={<Checkout/>}/>
+    <Route path="/account"  element={<Account/>}/>
 </Routes>
 }

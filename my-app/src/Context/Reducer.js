@@ -2,6 +2,14 @@ export const Reducer=(state,action)=>{
     switch(action.type){
        case "login" :
         return {...state,isAuth:true};
+        case "logout" :
+        return {...state,isAuth:false,user:""};
+        case "empty" :
+        return {...state,cartCount:0,cartData:[]};
+        case "delete" :
+            let tdata= state.cartData.filter(user => user.id !== action.payload);
+            let nc=state.cartCount-1
+            return {...state,cartData:tdata,cartCount:nc}
        case "addCartData" :
         let newaction=action.payload.data
         if(newaction["qty"]===undefined){
