@@ -19,9 +19,9 @@ ZARA is a Spanish multi-national retail clothing chain. It specialises in fast f
 
 ## Tech Stack
 
-HTML, CSS, React, JavaScript, Chakhra UI, JSON Server
+HTML, CSS, React, JavaScript, Chakhra UI, JSON Server.
 
-*Server:* Local Storage of Web browser,JSON Server
+*Server:* Local Storage of Web browser,JSON Server.
 
 
 ## Roles & Responsibilities:
