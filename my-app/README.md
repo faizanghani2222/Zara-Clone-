@@ -25,4 +25,4 @@ HTML, CSS, React, JavaScript, Chakhra UI, JSON Server.
 
 
 ## Roles & Responsibilities:
-- Complete Application from scratch
+- Complete application from scratch
