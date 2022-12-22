@@ -24,7 +24,7 @@ export const Men=()=>{
         })
     }
     useEffect(()=>{
-        getData("https://faizan-mock-api.herokuapp.com/Men").then((res)=>{
+        getData("https://zara-backend.onrender.com/Men").then((res)=>{
             setIsLoading(true)
             setData(res)
             setpData(res)
@@ -111,7 +111,6 @@ else if(value==="htl"){
   }else{
     alert("Item Already Added")
   }
-  console.log(state.cartData)
 }
     return <>
    

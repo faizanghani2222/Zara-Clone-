@@ -25,7 +25,7 @@ export const Search=()=>{
         })
     }
     const handleFetch=(val)=>{
-      getData(`https://faizan-mock-api.herokuapp.com/${val}`).then((res)=>{
+      getData(`https://zara-backend.onrender.com/${val}`).then((res)=>{
         setIsLoading(true)
         setData(res)
         setpData(res)
@@ -35,7 +35,7 @@ export const Search=()=>{
     })
     }
     useEffect(()=>{
-        getData("https://faizan-mock-api.herokuapp.com/woman").then((res)=>{
+        getData("https://zara-backend.onrender.com/woman").then((res)=>{
             setIsLoading(true)
             setData(res)
             setpData(res)
@@ -125,7 +125,6 @@ else if(value==="htl"){
 }
 const handleSearch=(e)=>{
   e.preventDefault()
-  console.log(srch)
   let v=srch
   if(v==="t-shirt"){
     v="tshirt"

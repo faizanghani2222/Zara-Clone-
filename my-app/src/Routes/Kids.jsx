@@ -24,7 +24,7 @@ export const Kids=()=>{
         })
     }
     useEffect(()=>{
-        getData("https://faizan-mock-api.herokuapp.com/Kids").then((res)=>{
+        getData("https://zara-backend.onrender.com/Kids").then((res)=>{
             setIsLoading(true)
             setData(res)
             setpData(res)

@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import React from "react"
-import { Box, Button, ButtonGroup, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay,Grid,Icon,Image,StackDivider, Text, useDisclosure, VStack } from '@chakra-ui/react'
+import { Box, Button, ButtonGroup, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerHeader, DrawerOverlay,Grid,Icon,Image,StackDivider, Text, useDisclosure, VStack } from '@chakra-ui/react'
 import { Flex, Spacer } from '@chakra-ui/react'
 import  "../CSS/Navbar.css"
 import { Link as RouterLink  } from "react-router-dom";
@@ -17,11 +17,11 @@ export const ProductsDetail=()=>{
    const {state,dispatch}=useContext(AuthContext)
     let baseUrl=""
   if(params.id.includes("w")){
-   baseUrl="https://faizan-mock-api.herokuapp.com/Woman/"+params.id
+   baseUrl="https://zara-backend.onrender.com/Woman/"+params.id
   }else if(params.id.includes("m")){
-    baseUrl="https://faizan-mock-api.herokuapp.com/Men/"+params.id
+    baseUrl="https://zara-backend.onrender.com/Men/"+params.id
   }else if(params.id.includes("k")){
-    baseUrl="https://faizan-mock-api.herokuapp.com/Kids/"+params.id
+    baseUrl="https://zara-backend.onrender.com/Kids/"+params.id
   }
     useEffect(()=>{
         fetch(baseUrl).then((res)=>{
